@@ -1,0 +1,134 @@
+classDiagram
+    class pizzaPronto {
+        +main(args: String[]): void
+        +run(): void
+        +displayHomeScreen(): void
+    }
+
+    class Order {
+        -orderItems: ArrayList~OrderItem~
+        -orderDate: LocalDateTime
+        -orderId: String
+        +addPizza(pizza: Pizza): void
+        +addDrink(drink: Drink): void
+        +addGarlicKnots(knots: GarlicKnots): void
+        +removeItem(item: OrderItem): void
+        +calculateTotal(): double
+        +displayOrderDetails(): void
+        +saveReceipt(): void
+        +getOrderItems(): ArrayList~OrderItem~
+    }
+
+    class Pizza {
+        -size: PizzaSize
+        -crust: CrustType
+        -toppings: ArrayList~Topping~
+        -sauces: ArrayList~Sauce~
+        -hasStuffedCrust: boolean
+        +calculatePrice(): double
+        +addTopping(topping: Topping, isExtra: boolean): void
+        +addSauce(sauce: Sauce): void
+        +getDescription(): String
+    }
+
+    class Drink {
+        -size: DrinkSize
+        -flavor: String
+        +getDescription(): String
+    }
+
+    class GarlicKnots {
+        -price: double
+        +calculatePrice(): double
+        +getDescription(): String
+    }
+
+    class Topping {
+        -name: String
+        -category: ToppingCategory
+        -isExtra: boolean
+        +getPrice(size: PizzaSize): double
+    }
+
+    class Sauce {
+        -name: String
+        +getName(): String
+    }
+
+    class PizzaSize {
+        <<enumeration>>
+        PERSONAL_8
+        MEDIUM_12
+        LARGE_16
+    }
+
+    class DrinkSize {
+        <<enumeration>>
+        SMALL
+        MEDIUM
+        LARGE
+    }
+
+    class CrustType {
+        <<enumeration>>
+        THIN
+        REGULAR
+        THICK
+        CAULIFLOWER
+    }
+
+    class ToppingCategory {
+        <<enumeration>>
+        MEAT
+        CHEESE
+        REGULAR
+    }
+
+    class UserInterface {
+        +displayHomeScreen(): void
+        +displayOrderScreen(order: Order): void
+        +displayCheckout(order: Order): void
+        +displayMessage(message: String): void
+    }
+
+    class PizzaBuilder {
+        +buildPizza(): Pizza
+        +selectSize(): PizzaSize
+        +selectCrust(): CrustType
+        +selectToppings(): ArrayList~Topping~
+        +selectSauces(): ArrayList~Sauce~
+    }
+
+    class ReceiptManager {
+        +saveReceiptToFile(order: Order): void
+        +formatReceipt(order: Order): String
+    }
+
+    class OrderItem {
+        <<interface>>
+        +calculatePrice(): double
+        +getDescription(): String
+    }
+
+    class SignaturePizza {
+        -signatureName: String
+        +getSignatureName(): String
+    }
+
+    class MargheritaPizza
+    class VeggiePizza
+
+%% Relationships
+    Order o-- OrderItem
+    Pizza o-- Topping
+    Pizza o-- Sauce
+    OrderItem <|.. Pizza
+    OrderItem <|.. Drink
+    OrderItem <|.. GarlicKnots
+    Pizza <|-- SignaturePizza
+    SignaturePizza <|-- MargheritaPizza
+    SignaturePizza <|-- VeggiePizza
+    Topping --> ToppingCategory
+    Pizza --> PizzaSize
+    Pizza --> CrustType
+    Drink --> DrinkSize
