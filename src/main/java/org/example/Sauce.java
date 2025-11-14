@@ -1,10 +1,12 @@
 package org.example;
 
-public enum Sauce {
-    MARINARA, ALFREDO, PESTO, BBQ, BUFFALO, OLIVE_OIL;
+public enum Sauce
+{
+    MARINARA, ALFREDO, PESTO, OLIVE_OIL;
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return name().toLowerCase().replace("_", " ");
     }
 }

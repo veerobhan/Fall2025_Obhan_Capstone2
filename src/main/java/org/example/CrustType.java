@@ -3,11 +3,11 @@ package org.example;
 public enum CrustType {
     THIN,
     REGULAR,
-    THICK,
-    CAULIFLOWER;
+    DEEP_DISH;
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return name().toLowerCase();
     }
 }

@@ -4,25 +4,30 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class Order
+{
     private List<Pizza> pizzas = new ArrayList<>();
     private List<Drink> drinks = new ArrayList<>();
     private List<GarlicKnots> garlicKnots = new ArrayList<>();
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    public void addPizza(Pizza pizza) {
+    public void addPizza(Pizza pizza)
+    {
         pizzas.add(pizza);
     }
 
-    public void addDrink(Drink drink) {
+    public void addDrink(Drink drink)
+    {
         drinks.add(drink);
     }
 
-    public void addGarlicKnots(GarlicKnots knots) {
+    public void addGarlicKnots(GarlicKnots knots)
+    {
         garlicKnots.add(knots);
     }
 
-    public double calculateTotal() {
+    public double calculateTotal()
+    {
         double total = 0;
         for (Pizza p : pizzas) total += p.calculatePrice();
         for (Drink d : drinks) total += d.getPrice();
@@ -30,7 +35,8 @@ public class Order {
         return total;
     }
 
-    public void displayOrderDetails() {
+    public void displayOrderDetails()
+    {
         System.out.println("\n--- Order Details ---");
         for (Pizza p : pizzas) System.out.println(p);
         for (Drink d : drinks) System.out.println(d);
@@ -38,11 +44,13 @@ public class Order {
         System.out.printf("Total: $%.2f%n", calculateTotal());
     }
 
-    public void saveReceipt() {
+    public void saveReceipt()
+    {
         new ReceiptWriter().saveToFile(this);
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDateTime getTimestamp()
+    {
         return timestamp;
     }
 

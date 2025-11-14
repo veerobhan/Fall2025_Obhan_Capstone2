@@ -1,23 +1,27 @@
 package org.example;
 
 
-public enum DrinkSize {
-    SMALL(2.00),
-    MEDIUM(2.50),
-    LARGE(3.00);
+public enum DrinkSize
+{
+    SMALL("Small", 2.00),
+    MEDIUM("Medium", 2.50),
+    LARGE("Large", 3.00);
 
     private final double price;
 
-    DrinkSize(double price) {
+    DrinkSize(String label, double price)
+    {
         this.price = price;
     }
 
-    public double getPrice() {
+    public double getPrice()
+    {
         return price;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return name().toLowerCase();
     }
 }

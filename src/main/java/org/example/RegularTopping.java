@@ -1,11 +1,13 @@
 package org.example;
 
-public enum RegularTopping {
+public enum RegularTopping
+{
     ONIONS, MUSHROOMS, BELL_PEPPERS, OLIVES, TOMATOES,
-    SPINACH, BASIL, PINEAPPLE, ANCHOVIES;
+    SPINACH, BASIL, JALAPENOS;
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return name().toLowerCase().replace("_", " ");
     }
 }
