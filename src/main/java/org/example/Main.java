@@ -7,7 +7,8 @@ public class Main
     private static Scanner scanner = new Scanner(System.in);
     private static Order currentOrder;
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         showHomeScreen();
     }
 
@@ -74,6 +75,7 @@ public class Main
         currentOrder.displayOrderDetails();
         currentOrder.saveReceipt();
         System.out.println("✅ Order saved. Returning to Home Screen");
+        System.exit(0);
     }
 
     private static void cancelOrder()
@@ -87,22 +89,43 @@ public class Main
         System.out.println("\n--- Pizza Options ---");
         System.out.println("1) Build Your Own Pizza");
         System.out.println("2) Signature Pizza");
+        System.out.println("0) Back");
         System.out.print("Choose option: ");
+
         int option = Integer.parseInt(scanner.nextLine());
 
+
+        if (option == 0)
+        {
+            System.out.println("Returning to previous menu...");
+            return;
+        }
+
         Pizza pizza;
+
         if (option == 2)
         {
             pizza = chooseSignaturePizza();
-            //customizeSignaturePizza(pizza);
+
+            if (pizza == null)
+            {
+                return;
+            }
         }
-        else
+        else if (option == 1)
         {
             pizza = buildCustomPizza();
         }
+        else
+        {
+            System.out.println("Invalid option. Returning...");
+            return;
+        }
 
         currentOrder.addPizza(pizza);
+        System.out.println("Pizza added!");
     }
+
 
     private static Pizza buildCustomPizza()
     {
@@ -205,24 +228,30 @@ public class Main
         return pizza;
     }
 
-    private static Pizza chooseSignaturePizza()
-    {
+    private static Pizza chooseSignaturePizza() {
         System.out.println("\n--- Signature Pizzas ---");
         System.out.println("1) Margherita");
         System.out.println("2) Veggie");
+        System.out.println("0) Back");
         System.out.print("Choose signature pizza: ");
+
         int choice = Integer.parseInt(scanner.nextLine());
 
-        return switch (choice)
-        {
+        if (choice == 0) {
+            System.out.println("Returning to previous menu...");
+            return null;
+        }
+
+        return switch (choice) {
             case 1 -> new MargheritaPizza();
             case 2 -> new VeggiePizza();
             default -> {
-                System.out.println("Invalid choice, defaulting to Margherita.");
-                yield new MargheritaPizza();
+                System.out.println("Invalid option. Returning to menu...");
+                yield null;
             }
         };
     }
+
 
     private static void addDrink() {
         System.out.println("\n--- Add a Drink ---");

@@ -3,13 +3,13 @@ package org.example;
 
 public enum Meat
 {
-    PEPPERONI, SAUSAGE, CHICKEN, MEATBALL;
+    PEPPERONI, SAUSAGE, CHICKEN, MEATBALL, PROSCIUTTO;
 
     public double getPrice(PizzaSize size, boolean extra) {
         return switch (size) {
-            case PERSONAL -> extra ? 0.00 : 2.00;
-            case MEDIUM   -> extra ? 0.50 : 3.50;
-            case LARGE    -> extra ? 1.00 : 5.00;
+            case PERSONAL -> extra ? 1.00 : 3.00;
+            case MEDIUM   -> extra ? 2.00 : 4.00;
+            case LARGE    -> extra ? 3.00 : 5.00;
         };
     }
 

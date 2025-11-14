@@ -2,9 +2,9 @@ package org.example;
 
 public enum PizzaSize
 {
-    PERSONAL("8\"", 11.00),
-    MEDIUM("12\"", 14.00),
-    LARGE("16\"", 18.50);
+    PERSONAL("8\"", 12.00),
+    MEDIUM("12\"", 15.00),
+    LARGE("16\"", 18.00);
 
     private final String label;
     private final double basePrice;
